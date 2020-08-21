@@ -1,0 +1,284 @@
+/*** ПЕРЕМЕННЫЕ ***/
+:root {
+    /* Цвета */
+    --body-color: #E1E1E1;
+    --light-elems-color: #FFFFFF;
+    --top-menu-color: #5C5C5C;
+    --top-menu-focus-color: #828282;
+    --footer-left-menu-cat-card-color: #F9F3F3;
+    --left-menu-focus-color: #FFF2D5;
+    --shadow-color: #AAAAAA;
+
+    /* Размеры */
+    --navbar-height: 180px;
+    --top-menu-height: 58px;
+    --left-menu-width: 300px;
+    --main-content-width: 1200px;
+
+    --cat-card-width: 200px;
+    --cat-image-height: 200px;
+}
+
+/*** БАЗОВЫЕ ЭЛЕМЕНТЫ ***/
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    min-height: 100%;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    min-height: 100%;
+    margin: 0;
+    z-index: 1;
+    background-color: var(--body-color);
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: var(--light-elems-color);
+}
+
+
+/* УТИЛИТЫ */
+
+.unstyled-link {
+    text-decoration: inherit;
+    color: inherit;
+}
+
+.ul-reset {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/*** НАВИГАЦИОННАЯ ПАНЕЛЬ СВЕРХУ ***/
+
+.navbar {
+    width: var(--main-content-width);
+    padding: 0 30px;
+    margin: 0 auto;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    height: var(--navbar-height);
+    background-color: var(--light-elems-color);
+}
+
+.navbar-search-box {
+    border: 1px solid black;
+    padding: 0.5rem;
+    width: 450px;
+}
+
+.navbar-work-data {
+    margin: auto;
+}
+
+.navbar-item-right {
+    margin-left: auto;
+    line-height: 2.5;
+}
+
+/*** МЕНЮ СВЕРХУ ***/
+
+.top-menu-container {
+    width: 100%;
+    height: var(--top-menu-height);
+
+    position: fixed;
+    top: var(--navbar-height);
+
+    display: flex;
+    align-items: center;
+
+    z-index: 10;
+
+    background-color: var(--top-menu-color);
+}
+
+.top-menu-list {
+    width: var(--main-content-width);
+
+    padding: 0;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.top-menu-list-item {
+    color: #F4F4F4;
+    font-weight: bold;
+    padding: 1.1rem 0.75rem;
+
+    transition: background-color 0.7s;
+}
+
+.top-menu-list-item:hover {
+    background-color: var(--top-menu-focus-color);
+}
+
+/*** ГЛАВНАЯ ЧАСТЬ СТРАНИЦЫ ***/
+
+.page-content {
+    width: var(--main-content-width);
+    height: 100%;
+    margin: 0 auto;
+    padding-top: 20px;
+
+    display: flex;
+    align-items: stretch;
+    flex-direction: row;
+
+    background-color: var(--light-elems-color);
+}
+
+.main-content {
+    width: 100%;
+
+    margin-top: 220px;
+    margin-left: 333px;
+}
+
+/*** МЕНЮ СЛЕВА ***/
+
+.left-menu {
+    position: fixed;
+    top: 220px;
+
+    margin-top: 20px;
+    margin-left: 10px;
+
+    z-index: 9;
+
+    box-shadow: 4px 4px 4px var(--shadow-color);
+}
+
+.left-menu-list {
+    width: var(--left-menu-width);
+
+    padding: 0;
+    margin: 0;
+
+    background-color: var(--footer-left-menu-cat-card-color);
+
+    display: flex;
+    flex-direction: column;
+}
+
+.left-menu-list-item {
+    font-size: 18px;
+
+    padding: 19px;
+
+    display: flex;
+    align-items: center;
+
+    transition: background-color 1.5s;
+}
+
+.left-menu-list-item:hover {
+    background-color: var(--left-menu-focus-color);
+}
+
+/*** ВСПЛЫВАЮЩЕЕ ПОДМЕНЮ ***/
+
+.submenu-list {
+    width: 120px;
+
+    position: absolute;
+    top: 0;
+    left: 300px;
+
+    padding: 0;
+
+    display: none;
+    list-style: none;
+
+    background-color: var(--footer-left-menu-cat-card-color);
+
+    box-shadow: 4px 4px 4px var(--shadow-color);
+}
+
+ul li:hover > ul {
+    display: inherit;
+}
+
+/*** КАРТОЧКИ КОТИКОВ ***/
+
+    .cat-list {
+    padding: 0;
+    display: flex;
+    align-items: stretch;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    margin-right: -1rem;
+}
+
+.cat-card {
+    flex: 0 0 auto;
+    width: var(--cat-card-width);
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    background-color: var(--footer-left-menu-cat-card-color);
+}
+
+.cat-image {
+    height: var(--cat-image-height);
+    background-position: center;
+    background-size: cover;
+}
+
+.cat-status {
+    font-size: inherit;
+    font-weight: inherit;
+    margin: 8px 0;
+    padding-left: 10px;
+}
+
+.cat-name {
+    padding: 10px 10px;
+    margin: 0;
+}
+
+/*** ХЛЕБНЫЕ КРОШКИ ***/
+
+.bread-crumbs {
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.bread-crumbs .bread-crumbs-item::before {
+    content: '/';
+    padding: 5px;
+}
+
+.bread-crumbs .bread-crumbs-item:first-child::before {
+    content: '';
+    padding: 0;
+}
+
+/* ПОДВАЛ */
+
+.footer {
+    flex: 0;
+    text-align: center;
+    background-color: var(--footer-left-menu-cat-card-color);
+    z-index: 10;
+}

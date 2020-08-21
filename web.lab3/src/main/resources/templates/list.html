@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+
+    <title>Список задач</title>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/task/list">TODO</a>
+            <a class="navbar-btn btn-logout" href="/" th:href="@{/logout}">Выйти</a>
+        </div>
+    </div>
+</nav>
+
+<br>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h1>Список задач</h1><br>
+
+            <div th:if="${!isFound}">
+                <div class="alert alert-success">У Вас нет задач :)</div>
+            </div>
+
+            <th:block th:each="task: ${tasks}">
+                <div class="list">
+                    <div class="header-task">
+
+                        <div class="name-task" th:text="${task.name}"></div>
+
+                        <div class="task-action-bar">
+                            <form th:action="@{/task/edit/{taskId}(taskId=${task.id})}" th:method="get">
+                                <input type="submit"
+                                       class="btn-link btn-edit"
+                                       th:value="Изменить"/>
+                            </form>
+
+                            <form th:action="@{/task/delete/{taskId}(taskId=${task.id})}" th:method="post">
+                                <input type="submit"
+                                       class="btn-link btn-delete"
+                                       th:value="Удалить"/>
+                            </form>
+                        </div>
+                    </div>
+                    <div  th:text="${task.desc}" class="alert alert-info"></div>
+                </div>
+            </th:block>
+            <form th:action="@{/task/add}" method="get">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <input type="submit"
+                                   class="form-control btn btn-primary"
+                                   value="Добавить задачу" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

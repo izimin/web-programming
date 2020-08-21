@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+
+    <title>Регистрация</title>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/task/list">TODO</a>
+            </div>
+        </div>
+    </nav>
+
+    <br><br>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+
+                <h1>Регистрация</h1><br>
+
+                <form th:action="@{/registration}" method="post">
+                    <div th:if="${isErrorLogin}">
+                        <div class="alert alert-danger">Логин уже занят! Придумайте себе другой!</div>
+                    </div>
+
+                    <div th:if="${isErrorPass}">
+                        <div class="alert alert-danger">Пароли не совпадают</div>
+                    </div>
+
+                    <div th:if="${isLoginEmpty} or ${isPasswordEmpty} or ${isPassword2Empty}">
+                        <div class="alert alert-danger">Заполните все обязательные поля!</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="login">Введите логин*</label>:
+                        <label class="error-field" th:if="${isLoginEmpty}">данное поле является обязательным!</label>
+                        <input type="text"
+                               id="login"
+                               name="login"
+                               class="form-control"
+                               placeholder="логин"
+                               autofocus="autofocus"
+                               th:value="${login}"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Введите пароль*</label>:
+                        <label class="error-field" th:if="${isPasswordEmpty}">данное поле является обязательным!</label>
+                        <input type="password"
+                               id="password"
+                               name="password"
+                               class="form-control"
+                               placeholder="пароль"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password2">Повторите пароль*</label>:
+                        <label class="error-field" th:if="${isPassword2Empty}">данное поле является обязательным!</label>
+                        <input type="password"
+                               id="password2"
+                               name="password2"
+                               class="form-control"
+                               placeholder="повторный пароль" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fio">Введите ФИО</label>:
+                        <input type="text"
+                               id="fio"
+                               name="fio"
+                               class="form-control"
+                               placeholder="ФИО"
+                               th:value="${fio}"/>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                <input type="submit"
+                                       class="form-control btn btn-primary"
+                                       value="Зарегистрироваться" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <span>Есть аккаунт? <a href="/" th:href="@{/login}">Войти</a></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript"
+            th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+    <script type="text/javascript"
+            th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+</body>
+</html>

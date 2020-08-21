@@ -1,0 +1,85 @@
+
+.error-field  {
+    color: red;
+    font-size: 7pt;
+    font-weight: unset;
+}
+
+.header-main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.list-item-complete {
+    display: flex;
+    flex-direction: column;
+    text-decoration: line-through !important;
+}
+
+.list-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-task {
+    display: flex;
+    flex-direction: row;
+    padding: 0 15px;
+}
+
+.name-task {
+    font-weight: bold;
+    font-size: 15pt;
+}
+
+.task-action-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: auto;
+}
+
+.btn-logout {
+    position: fixed;
+    top: 7px;
+    right: 20px;
+}
+
+.btn-link {
+    padding: 0;
+    margin-left: 10px;
+    background-color: transparent;
+    border: 0;
+}
+
+.btn-link,
+.btn-link:focus {
+    outline: none;
+    text-decoration: none;
+}
+
+.btn-edit {
+    color: gray;
+    text-decoration: none;
+
+}
+
+.btn-delete {
+    color: #D00000;
+    text-decoration: none;
+
+}
+
+.btn-complete {
+    color: #226E11;
+    text-decoration: none;
+}
+
+.task-completed {
+    text-decoration: line-through !important;
+}
+
+.task-not-completed {
+    text-decoration: none;
+}

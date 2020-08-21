@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+
+    <title>Список задач</title>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/task/list">TODO</a>
+            <a class="navbar-btn btn-logout" href="/" th:href="@{/logout}">Выйти</a>
+        </div>
+    </div>
+</nav>
+
+<br>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h1>Список задач</h1><br>
+
+            <div th:if="${!isFound}">
+                <div class="alert alert-success">У Вас нет задач :)</div>
+            </div>
+            <p><input id="filter" type="text"
+                      class="form-control form-control-lg"
+                      placeholder="Фильтр"
+                      th:oninput="|filterInputed()|"/>
+            </p>
+            <div class="form-check" style = "margin-left: 10px;">
+                <label class="radio-inline" th:onclick="|filterInputed()|">
+                    <input type="radio" name="radioGroup" id="radioAll" value="radioAll" checked> Все
+                </label>
+                <label class="radio-inline" th:onclick="|filterInputed()|">
+                    <input type="radio" name="radioGroup" id="radioOnlyCompleted" value="radioOnlyCompleted"> Только завершенные
+                </label>
+                <label class="radio-inline" th:onclick="|filterInputed()|">
+                    <input type="radio" name="radioGroup" id="radioOnlyNotCompleted" value="radioOnlyNotCompleted"> Только незавершенные
+                </label>
+            </div>
+            <br/>
+            <div id="loading" class="text-center m-5" style="display: none"> </div>
+            <th:block th:each="task: ${tasks} ">
+                <div class="list-item"
+                     th:classappend="${task.isCompleted ? 'task-completed' : 'task-not-completed'}"
+                     th:id="${task.id}"
+                     th:data="${task.isCompleted}">
+                    <div class="header-task">
+
+                        <div class="name-task" th:text="${task.name}"></div>
+
+                        <div class="task-action-bar">
+                            <input type="submit"
+                                   class="btn-link btn-complete"
+                                   th:id="'btnComplete' + ${task.id}"
+                                   th:onclick="|changeStatusTask('${task.id}')|"
+                                   th:value="${task.isCompleted ? 'Вернуть в работу' : 'Завершить'}"/>
+
+                            <a type="submit"
+                               class="btn-link btn-edit"
+                               href="/" th:href="@{/task/edit/{taskId}(taskId=${task.id})}">
+                                Изменить
+                            </a>
+
+                            <input id="del"
+                                    type="submit"
+                                   class="btn-link btn-delete"
+                                   th:onclick="|removeTask('${task.id}')|"
+                                   th:value="Удалить"/>
+
+                        </div>
+                    </div>
+                    <div th:text="${task.desc}"
+                         th:id="'alert' + ${task.id}"
+                         class="alert"
+                         th:classappend="${task.isCompleted ? 'alert-success' : 'alert-info'}"></div>
+                </div>
+            </th:block>
+            <form th:action="@{/task/add}" method="get">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <input type="submit"
+                                   class="form-control btn btn-primary"
+                                   value="Добавить задачу" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/list.js}"></script>
+</body>
+</html>

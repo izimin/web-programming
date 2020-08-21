@@ -1,0 +1,55 @@
+.error-field  {
+    color: red;
+    font-size: 7pt;
+    font-weight: unset;
+}
+
+.header-main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-task {
+    display: flex;
+    flex-direction: row;
+    padding: 0 15px;
+}
+
+.name-task {
+    font-weight: bold;
+    font-size: 15pt;
+}
+
+.task-action-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: auto;
+}
+
+.btn-logout {
+    position: fixed;
+    top: 7px;
+    right: 20px;
+}
+
+.btn-link {
+    padding: 0;
+    margin-left: 10px;
+    background-color: transparent;
+    border: 0;
+}
+
+.btn-edit {
+    color: gray;
+}
+
+.btn-delete {
+    color: #D00000;
+}
